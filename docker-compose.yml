@@ -1,0 +1,27 @@
+
+version: '3.9'
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # REACT_APP_API_URL: http://backend:8080
+        REACT_APP_API_URL: http://localhost:8080
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: C:/Users/USER/source/repos/FormulaOne.ChatService
+      dockerfile: FormulaOne.ChatService/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    volumes:
+    - ./uploads:/app/wwwroot/uploads
+
+
