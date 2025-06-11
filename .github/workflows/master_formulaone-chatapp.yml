@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_8c5bb1c4603345b59108cb240b335c83 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_ffa336e6b92a4a6bba88333ddc3ec849 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_e363d5acb1b04bf295b28444edb9bd9b }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_8f85d1a1a573458484acd4b40961328d }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_8c5bb1c4603345b59108cb240b335c83 }}/aritaademi/formulaone-chatapp-frontend:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_e363d5acb1b04bf295b28444edb9bd9b }}/aritaademi/formulaonechatapp-frontend:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'formulaone-chatapp'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_0a1805cbdccd42a79c2ee132ee238692 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_8c5bb1c4603345b59108cb240b335c83 }}/aritaademi/formulaone-chatapp-frontend:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_9a4c34aeeb0b48c98474e0090a52a39e }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_e363d5acb1b04bf295b28444edb9bd9b }}/aritaademi/formulaonechatapp-frontend:${{ github.sha }}'
