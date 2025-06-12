@@ -39,8 +39,14 @@ function App() {
       //   .withUrl("https://localhost:7101/chat")
       //   .configureLogging(LogLevel.Information)
       //   .build();
+
+      // const connection = new HubConnectionBuilder()
+      //   .withUrl(`${baseUrl}/chat`)
+      //   .configureLogging(LogLevel.Information)
+      //   .build();
+
       const connection = new HubConnectionBuilder()
-        .withUrl(`${baseUrl}/chat`)
+        .withUrl("/api/chat") // Change from `${baseUrl}/chat` to this
         .configureLogging(LogLevel.Information)
         .build();
 

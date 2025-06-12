@@ -27,6 +27,12 @@ builder.Services.Configure<FormOptions>(options =>
     options.MultipartBodyLengthLimit = 104857600; // 100 MB
 });
 
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(8080); // instead of just localhost
+});
+
+
 builder.Services.AddSingleton<SharedDb>();
 
 var app = builder.Build();

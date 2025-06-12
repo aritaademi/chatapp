@@ -332,11 +332,17 @@ const ChatRoom = ({ conn, username, messages, sendMessage, userList, setSelected
       //   credentials: "include"
       // });
 
-      const baseUrl = process.env.REACT_APP_API_URL || "http://localhost:8080";
-      const res = await fetch(`${baseUrl}/api/upload/upload`, {
-        method: "POST",
-        body: formData,
-        credentials: "include"
+      //const baseUrl = process.env.REACT_APP_API_URL || "http://localhost:8080";
+      // const res = await fetch(`${baseUrl}/api/upload/upload`, {
+      //   method: "POST",
+      //   body: formData,
+      //   credentials: "include"
+      // });
+
+      // No need for baseUrl anymore if all API calls go through /api proxy
+      const res = await fetch("/api/upload/upload", { // Change from `${baseUrl}/api/upload/upload` to this
+          method: "POST",
+          body: formData,
       });
 
       const data = await res.json();
