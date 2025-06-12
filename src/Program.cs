@@ -15,7 +15,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.WithOrigins("http://localhost:3000") // Your React client
+        policy.WithOrigins("http://localhost:3000", "https://wonderful-bush-07f8ebc1e.6.azurestaticapps.net/") // Your React client
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials(); // Needed for SignalR
@@ -32,6 +32,12 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
     serverOptions.ListenAnyIP(8080); // instead of just localhost
 });
 
+// Add Azure SignalR Service
+builder.Services.AddSignalR().AddAzureSignalR(options =>
+{
+    // This connection string will be set as an App Setting in Azure later
+    options.ConnectionString = builder.Configuration["Azure:SignalR:ConnectionString"];
+});
 
 builder.Services.AddSingleton<SharedDb>();
 
